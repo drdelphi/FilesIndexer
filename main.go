@@ -83,7 +83,7 @@ func startApp(_ *cli.Context) error {
 			fmt.Println("Sorry. No matches found")
 		} else {
 			bytes, _ := os.ReadFile(targetFile)
-			fmt.Printf("%v file(s) found with %.2f%% match:\n\r", len(res), matchPercent)
+			fmt.Printf("%v file(s) found with %.2f%% strings match:\n\r", len(res), matchPercent)
 			for _, f := range res {
 				analyseFile(f, bytes)
 			}

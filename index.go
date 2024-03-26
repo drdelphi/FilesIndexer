@@ -10,11 +10,12 @@ import (
 
 func index() error {
 	err := filepath.Walk(".", func(path string, info fs.FileInfo, err error) error {
-		if err != nil || info.IsDir() || len(FileStrings[path]) > 0 {
+		_, exists := FileStrings[path]
+		if err != nil {
 			return err
 		}
 
-		if strings.HasSuffix(os.Args[0], path) || path == fileStringsFilename {
+		if strings.HasSuffix(os.Args[0], path) || path == fileStringsFilename || path == configFilename || exists || info.IsDir() {
 			return nil
 		}
 
